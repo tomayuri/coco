@@ -1,0 +1,14 @@
+.topLogo {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.footer {
+  background-color: black;
+  color: aliceblue;
+}
+
+.footerLink {
+  margin-top: 50px;
+}
