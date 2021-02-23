@@ -4,11 +4,14 @@
   object-fit: cover;
 }
 
+.mainContainer {
+  /* background-color: lightgoldenrodyellow; */
+  background: linear-gradient(-135deg, lightgoldenrodyellow, white);
+  padding-top: 3rem;
+}
+
 .footer {
   background-color: black;
   color: aliceblue;
-}
-
-.footerLink {
-  margin-top: 50px;
+  margin-top: 1rem;
 }
