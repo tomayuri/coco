@@ -19,13 +19,13 @@ export const Layout = ({ children }): JSX.Element => (
           <Grid.Column columns={1}>
             <List bulleted>
               <List.Item>
-                <Link href="../">
+                <Link href="/">
                   <a>Top</a>
                 </Link>
               </List.Item>
               <List.Item>
-                <Link href="../about">
-                  <a>About</a>
+                <Link href="/profile">
+                  <a>Profile</a>
                 </Link>
               </List.Item>
             </List>
