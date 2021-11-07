@@ -2,9 +2,9 @@ import Layout from '../components/layout'
 import { profiles } from '../domain/profile'
 import { Image, Header, Grid, Segment, List, Label } from 'semantic-ui-react'
 
-export const About = (): JSX.Element => (
+export const ProfilePage = (): JSX.Element => (
   <Layout>
-    <Header as="h2" dividing>
+    <Header as="h2" color="grey" dividing>
       Profile
     </Header>
     <Grid>
@@ -79,4 +79,4 @@ export const About = (): JSX.Element => (
   </Layout>
 )
 
-export default About
+export default ProfilePage

@@ -1,44 +1,35 @@
-import { useState } from 'react'
 import { Layout } from '../components/layout'
+import { Header, Segment } from 'semantic-ui-react'
 import { Episodes } from '../components/episodes'
-import { RssFeed } from '../domain/rssfeed'
-import xml2js from 'xml2js'
 
-export const Home = (): JSX.Element => {
-  const [items, setItems] = useState<RssFeed[]>()
-  fetch('https://anchor.fm/s/4881bfd0/podcast/rss')
-    .then((res) => res.text())
-    .then((xml) => {
-      const parser = new xml2js.Parser()
-      parser.parseStringPromise(xml).then((result) => {
-        const items = new Array<RssFeed>()
-        result.rss.channel[0].item.map((i) => {
-          const personalities = i.description[0]
-            .replace(/\n/g, '')
-            .replace(/^.*パーソナリティ/g, '')
-            .match(/jakelizzi|tomayuri|tonkotyu/g)
+export const IndexPage = (): JSX.Element => (
+  <Layout>
+    <Segment basic>
+      <Header as="h1" color="grey">
+        Welcome to Coconuts.tech
+      </Header>
+    </Segment>
+    <Segment basic>
+      <Header as="h2" color="grey" dividing>
+        About
+      </Header>
+    </Segment>
+    <Segment basic padded>
+      <p style={{ fontSize: '1.33em' }}>
+        このポッドキャストは、テックに興味のあるおじさんが２週間に一度気になったトピックについて
+        <br />
+        ゆるゆると話すポッドキャストです。
+        <br />
+        ポッドキャストの名前は、カタカナで「ココナッツテック」です。
+        <br />
+        もし、感想などあれば、ハッシュタグ全角カタカナで
+        <span style={{ fontSize: '1.5em' }}>#ココナッツテック</span>
+        でつぶやいていただけると大変うれしいです。
+        <br />
+      </p>
+    </Segment>
+    <Episodes />
+  </Layout>
+)
 
-          const rssFeed: RssFeed = {
-            description: i.description[0],
-            link: i.link[0],
-            pubDate: i.pubDate[0],
-            title: i.title[0],
-            episode: i['itunes:episode'],
-            personalities: personalities,
-          }
-          items.push(rssFeed)
-        })
-        setItems(items)
-      })
-    })
-  return (
-    <Layout>
-      <h1 className="title">Welcome to Coconuts.tech</h1>
-      {items?.map((item, index) => (
-        <Episodes item={item} key={index} />
-      ))}
-    </Layout>
-  )
-}
-
-export default Home
+export default IndexPage

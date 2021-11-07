@@ -16,6 +16,7 @@ export const Layout = ({ children }): JSX.Element => (
           <Grid.Column columns={1}>
             <Menu text>
               <Menu.Item href="/">Top</Menu.Item>
+              <Menu.Item href="/episodes">Episodes</Menu.Item>
               <Menu.Item href="/profile">Profile</Menu.Item>
               <Menu.Item href="/contact">Contact</Menu.Item>
             </Menu>
@@ -38,8 +39,18 @@ export const Layout = ({ children }): JSX.Element => (
                 </Link>
               </List.Item>
               <List.Item>
+                <Link href="/episodes">
+                  <a>Episodes</a>
+                </Link>
+              </List.Item>
+              <List.Item>
                 <Link href="/profile">
                   <a>Profile</a>
+                </Link>
+              </List.Item>
+              <List.Item>
+                <Link href="/contact">
+                  <a>Contact</a>
                 </Link>
               </List.Item>
             </List>

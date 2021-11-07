@@ -1,22 +1,25 @@
+import { useEffect, useState } from 'react'
+import { Episode } from './episode'
 import { RssFeed } from '../domain/rssfeed'
-import { Card } from 'semantic-ui-react'
-import moment from 'moment'
+import { FetchRssFeeds } from '../domain/services/fetchRssFeeds'
+import { Header, Segment } from 'semantic-ui-react'
 
-type EpisodesPropsType = {
-  item: RssFeed
-}
+export const Episodes = (): JSX.Element => {
+  const [items, setItems] = useState<RssFeed[]>()
 
-export const Episodes = (props: EpisodesPropsType) => {
-  const { item } = props
+  useEffect(() => {
+    FetchRssFeeds().then((feeds) => setItems(feeds))
+  }, [])
   return (
-    <Card.Group>
-      <Card fluid href={`/episodes/${item.episode}`}>
-        <Card.Content>
-          <Card.Meta>{moment(item.pubDate).format('YYYY/MM/DD')}</Card.Meta>
-          <Card.Header>{item.title}</Card.Header>
-          <Card.Description>{item.personalities.join(' , ')}</Card.Description>
-        </Card.Content>
-      </Card>
-    </Card.Group>
+    <Segment basic>
+      <Header as="h2" color="grey" dividing>
+        Episodes
+      </Header>
+      {items?.map((item, index) => (
+        <Episode item={item} key={index} />
+      ))}
+    </Segment>
   )
 }
+
+export default Episodes
