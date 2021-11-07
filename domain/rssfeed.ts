@@ -4,4 +4,5 @@ export type RssFeed = {
   pubDate: string
   title: string
   episode: string
+  personalities: string[]
 }

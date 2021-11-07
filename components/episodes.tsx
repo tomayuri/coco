@@ -1,6 +1,5 @@
-import Link from 'next/link'
 import { RssFeed } from '../domain/rssfeed'
-import { Segment } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
 import moment from 'moment'
 
 type EpisodesPropsType = {
@@ -10,12 +9,14 @@ type EpisodesPropsType = {
 export const Episodes = (props: EpisodesPropsType) => {
   const { item } = props
   return (
-    <Segment>
-      {moment(item.pubDate).format('YYYY/MM/DD')} <br />
-      {item.title} <br />
-      <Link href={{ pathname: '/episode', query: { ep: item.episode } }}>
-        more
-      </Link>
-    </Segment>
+    <Card.Group>
+      <Card fluid href={`/episodes/${item.episode}`}>
+        <Card.Content>
+          <Card.Meta>{moment(item.pubDate).format('YYYY/MM/DD')}</Card.Meta>
+          <Card.Header>{item.title}</Card.Header>
+          <Card.Description>{item.personalities.join(' , ')}</Card.Description>
+        </Card.Content>
+      </Card>
+    </Card.Group>
   )
 }

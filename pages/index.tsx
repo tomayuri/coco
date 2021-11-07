@@ -13,12 +13,18 @@ export const Home = (): JSX.Element => {
       parser.parseStringPromise(xml).then((result) => {
         const items = new Array<RssFeed>()
         result.rss.channel[0].item.map((i) => {
+          const personalities = i.description[0]
+            .replace(/\n/g, '')
+            .replace(/^.*パーソナリティ/g, '')
+            .match(/jakelizzi|tomayuri|tonkotyu/g)
+
           const rssFeed: RssFeed = {
             description: i.description[0],
             link: i.link[0],
             pubDate: i.pubDate[0],
             title: i.title[0],
-            episode: i['itunes:episode'][0],
+            episode: i['itunes:episode'],
+            personalities: personalities,
           }
           items.push(rssFeed)
         })

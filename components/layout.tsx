@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { Container, Image, List, Grid } from 'semantic-ui-react'
 import styles from './layout.module.css'
+import { Menu } from 'semantic-ui-react'
 
 export const Layout = ({ children }): JSX.Element => (
   <div>
@@ -9,6 +10,19 @@ export const Layout = ({ children }): JSX.Element => (
       <title>fm.Coconuts.tech</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
+    <header className={styles.header}>
+      <Grid container columns={1}>
+        <Grid.Row>
+          <Grid.Column columns={1}>
+            <Menu text>
+              <Menu.Item href="/">Top</Menu.Item>
+              <Menu.Item href="/profile">Profile</Menu.Item>
+              <Menu.Item href="/contact">Contact</Menu.Item>
+            </Menu>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </header>
     <Image src="/Coconuts-logo3.svg" className={styles.topLogo} />
     <main className={styles.mainContainer}>
       <Container>{children}</Container>

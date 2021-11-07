@@ -9,6 +9,10 @@
   padding-top: 3rem;
 }
 
+.header {
+  margin-top: 1rem;
+}
+
 .footer {
   background-color: black;
   color: aliceblue;
